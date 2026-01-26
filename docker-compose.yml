@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16
+#    container_name: eagle_horizon_legacy_database_container
+    environment:
+      POSTGRES_DB: eagle_horizon_legacy_database
+      POSTGRES_USER: chama
+      POSTGRES_PASSWORD: chama
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+
+
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  depends_on:
+    - db

@@ -30,6 +30,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'core',
+    'rest_framework_simplejwt',
+    'drf_yasg',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -67,9 +70,19 @@ WSGI_APPLICATION = 'eagle_horizon.wsgi.application'
 # Database
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "eagle_horizon_legacy_database",
+        "USER": "chama",
+        "PASSWORD": "chama",
+        "HOST": "localhost",
+        # "HOST": "127.0.0.1",
+        # "HOST": "db",
+        "PORT": "5432",
     }
 }
 
@@ -122,11 +135,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
+                                'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': [
-        'rest_framework.filters.SearchFilter',
-        'rest_framework.filters.OrderingFilter',
+                                'rest_framework.filters.SearchFilter',
+                                'rest_framework.filters.OrderingFilter',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+                                'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+                                'rest_framework.permissions.IsAuthenticated',
+    ),
 }
 
 # CORS Configuration
@@ -136,3 +155,13 @@ CORS_ALLOWED_ORIGINS = config(
     default='http://localhost:3000,http://localhost:8000',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        }
+    },
+}

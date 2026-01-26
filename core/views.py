@@ -1,7 +1,11 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import HttpResponse
 
+
+def home(request):
+    return HttpResponse("Welcome to the Hardware Rental API!")
 
 @api_view(['GET'])
 def health_check(request):
