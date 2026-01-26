@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'core',
     'rest_framework_simplejwt',
     'drf_yasg',
-    'accounts'
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +126,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+AUTH_USER_MODEL = 'auth.User'
 
 # Default primary key field type
 
