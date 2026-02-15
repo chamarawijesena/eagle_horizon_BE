@@ -122,3 +122,15 @@ See the Gunicorn configuration in `requirements.txt` for production deployment o
 ## License
 
 All rights reserved.
+
+## FE Connection
+
+```bash
+Browser
+   ↓
+React (localhost:3000)
+   ↓ HTTP request (fetch / axios)
+Django API (localhost:8000)
+   ↓
+PostgreSQL
+```

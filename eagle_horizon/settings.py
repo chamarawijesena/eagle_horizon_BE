@@ -48,6 +48,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'eagle_horizon.urls'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+
+]
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -147,7 +154,8 @@ REST_FRAMEWORK = {
                                 'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-                                'rest_framework.permissions.IsAuthenticated',
+                                # 'rest_framework.permissions.IsAuthenticated',
+                                "rest_framework.permissions.AllowAny",
     ),
 }
 

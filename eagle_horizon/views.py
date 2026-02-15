@@ -7,3 +7,5 @@ from rest_framework.response import Response
 @permission_classes([AllowAny])  # This bypasses the global IsAuthenticated requirement
 def health_check(request):
     return Response({"status": "ok", "message": "Service is healthy"})
+
+
