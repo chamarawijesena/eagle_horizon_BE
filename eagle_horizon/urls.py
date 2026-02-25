@@ -13,6 +13,7 @@ from drf_yasg import openapi
 
 from core.swagger_views import MyTokenObtainPairView, RefreshTokenView
 from core.views import home
+from .views import dashboard_data, health_check
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -23,6 +24,11 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
+
+urlpatterns = [
+    path("health/", health_check),
+    path("dashboard/", dashboard_data),
+]
 
 urlpatterns = [
     path('', home),
