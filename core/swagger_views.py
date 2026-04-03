@@ -9,8 +9,8 @@ class TokenResponseSerializer(serializers.Serializer):
     refresh = serializers.CharField()
 
 class MyTokenObtainPairView(TokenObtainPairView):
-    # Use the default SimpleJWT serializer for logic, but keep your custom one for Swagger UI
     @swagger_auto_schema(
+        tags=['Auth'],
         responses={200: TokenResponseSerializer}
     )
     def post(self, request, *args, **kwargs):
@@ -18,6 +18,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 class RefreshTokenView(TokenRefreshView):
     @swagger_auto_schema(
+        tags=['Auth'],
         responses={200: TokenResponseSerializer}
     )
     def post(self, request, *args, **kwargs):
