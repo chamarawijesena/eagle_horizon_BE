@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"import\\\\|from\" /c/CW_2.0/projects/Quintessence/eagle_horizon_be/core/*.py /c/CW_2.0/projects/Quintessence/eagle_horizon_be/users/*.py /c/CW_2.0/projects/Quintessence/eagle_horizon_be/inventory/*.py --exclude-dir=.venv)",
+      "Bash(ls:*)",
+      "Bash(for dir:*)",
+      "Bash(do echo:*)",
+      "Read(//c/CW_2.0/projects/Quintessence/eagle_horizon_be/$dir/**)",
+      "Bash(done)"
+    ]
+  }
+}
