@@ -3,6 +3,7 @@ Django settings for eagle_horizon project.
 """
 
 from pathlib import Path
+from datetime import timedelta
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'core',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
     'users',
     'inventory',
@@ -163,6 +165,17 @@ CORS_ALLOWED_ORIGINS = config(
             'http://localhost:5173',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
+
+SIMPLE_JWT = {
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ROTATE_REFRESH_TOKENS': True,
+}
+
+# Email (console backend for dev — swap for SMTP in production)
+EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@eaglehorizon.com')
+
+FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173')
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
