@@ -177,6 +177,8 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@eaglehorizon.
 
 FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173')
 
+CURRENCY = 'LKR'
+
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
         'Bearer': {
